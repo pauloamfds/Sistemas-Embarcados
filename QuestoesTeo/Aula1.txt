@@ -1,0 +1,31 @@
+Paulo Augusto Miguel Fonseca de Souza			13/0035173
+Questões da aula do dia 07/03/2017
+
+1)O que são sistemas embarcados?
+	São sistemas com desenvolvimento voltados para aplicações especificas na qual fica executando repetidas vezes.
+
+2)O que são sistemas microprocessados?
+	São sistemas que necessitam de um microprocessador para realizar determinadas tarefas. O microprocessador é programado para executar o que se é necessário.
+
+3)Apresente aplicações de sistemas embarcados:
+	*Para industria automotiva;
+		Redes de comunicação embarcada
+		Sistemas de gps e navegação
+		Controle de motor e injeção eletrônica
+		Alarmes
+		Computador de bordo
+		Controle de transmissão
+		Sistemas em tempo real 
+		Controle de tração
+		Suspensão ativa
+		Sistemas de entretenimento
+	*Para eletrodomésticos;
+		Controle de maquina de lavar, micro-ondas, refrigeradores, ar-cpndicionado
+	*Para automação industrial;
+		Robótica industrial, instrumentos inteligentes, acionamentos elétricos, computador de vazão
+		
+4)Cite arquiteturas possíveis e as diferenças entre elas.
+
+5)Por que usamos o Raspberry Pi na disciplina, ao invés de outro system on chip?
+	Usamos ele pois ele já é bem completo e atende aos requisitos necessários para a disciplina
+
