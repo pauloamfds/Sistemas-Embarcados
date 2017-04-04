@@ -37,7 +37,7 @@ em vez de usar getc, então usa a função read, e com isso vai colocando em out
 	$ echo Ola mundo cruel! Ola universo ingrato! > ola.txt
 	$ ./cat_falsificado ola.txt
 	$ Ola mundo cruel! Ola universo ingrato!
-	$
+	$mesma função usada na aula 4, não era preciso alteração
 
 7. Crie um código em C que conta a ocorrência de uma palavra-chave em um arquivo-texto, e escreve o resultado no terminal. Reaproveite as funções já criadas nas questões anteriores. Por exemplo, considerando que o código criado recebeu o nome de 'busca_e_conta':
 	$ echo Ola mundo cruel! Ola universo ingrato! > ola.txt
