@@ -31,7 +31,7 @@ Data: 28/03/2017
 	}
 
 (Repare que a função Incrementa_Variavel_Global() recebe como entrada o ID do processo que a chamou.)
-Responda: a variável global 'v_global' foi compartilhada por todos os processos-filho, ou cada processo enxergou um valor diferente para esta variável?
+Responda: a variável global 'v_global' foi compartilhada por todos os processos-filho, ou cada processo enxergou um valor diferente para esta variável?se não usar um if, cada vez que for chamada, pode ser passado um valor diferente para a função, e se passar o valor de um processo diferente, a v_global vai receber o mesmo valro
 
 5. Repita a questão anterior, mas desta vez faça com que o processo-pai também chame a função Incrementa_Variavel_Global().
-Responda: a variável global 'v_global' foi compartilhada por todos os processos-filho e o processo-pai, ou cada processo enxergou um valor diferente para esta variável?
+Responda: a variável global 'v_global' foi compartilhada por todos os processos-filho e o processo-pai, ou cada processo enxergou um valor diferente para esta variável?Cada processo enxerga um valor diferente para cada variavel global.
