@@ -325,7 +325,7 @@
 
 % *** PDF, URL AND HYPERLINK PACKAGES ***
 %
-%\usepackage{url}
+\usepackage{url}
 % url.sty was written by Donald Arseneau. It provides better support for
 % handling and breaking URLs. url.sty is already installed on most LaTeX
 % systems. The latest version can be obtained at:
@@ -348,6 +348,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
+\usepackage{cite}
+\usepackage[pdftex]{hyperref}
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
@@ -357,7 +359,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Equalizador de áudio digital}
+\title{Simulador de amplificador de áudio}
 
 
 % author names and affiliations
@@ -371,7 +373,7 @@ Email: pauloaugustomiguelfonseca@gmail.com}
 \IEEEauthorblockN{Tiago Martins de Brito}
 \IEEEauthorblockA{Estudante de Engenharia Eletrônica\\
 Faculdade Gama - FGA UnB\\
-Email: tiago@gmail.com}
+Email: tiagomartinsbrito879@gmail.com}
 }%final de autores
 
 % conference papers do not typically use \thanks and this command
@@ -390,7 +392,7 @@ Email: tiago@gmail.com}
 
 
 \begin{abstract}
-Adicionar aqui o resumo
+Com o processamento de sinais de áudio, é possivel modificar as características originais do sinal. Por ser de áudio, pode-se ver o seu comportamento em faixas de frequência diferente e com isso equalizar um sinal da maneira pretendida através de filtros. Também é possível amplificar ele de uma maneira que o torne mais intenso ou menos intenso, modificando a sua amplitude.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -424,11 +426,23 @@ Equalizar audio, é definir faixas de específicas de frequência.
 Fazer a introdução
  
 %\hfill January 11, 2007
+\subsection{Justificativa}
+Para tratamento de sinais de áudio com equipamentos digitais ou analógicos, ainda há um elevado custo, então como esse projeto tem como motivação tentar reduzir esses custos, mas tendo em vista manter uma certa qualidade. Com esse custo reduzido, poderia ser usado para o aprendizado para quem ainda está aprendendo e não quer gastar muito com equipamentos de áudio. 
 
 \subsection{Objetivos}
-O objetivo deste trabalho, é mostrar como pode ser feita a equallização de audio, com o Raspberry Pi aplicando todos os conhecimentos aprendidos em sala de aula.
+O objetivo deste trabalho, é mostrar como pode ser feita a equallização de áudio, com o Raspberry Pi através da amostragem de um sinal. 
+
+\subsection{Requisitos}
+A priori está sendo estudada a possibilidade de usar um conversor AD, de pelo menos 16 bits e uma frequência de amostragem de 40kHz, ou no lugar dele colocar uma interface de áudio, que tem uma taxa de amostragem de 48kHz e de 24 bits. Isso se deve pois o Raspberry não possui conversor AD, então é preciso usar um externo. 
+
+Sensores serão usados para colocar algum tipo de efeito durante o processamento do sinal pelo Raspberry, como por exemplo um sensor de distância para colocar a intensidade do efeito. Também pode ser adicionado um VU-Meter, para mostrar as bandas de frequência do sinal. 
+
+Para todos os cálculos e processamentos dos sinais, será usado o Raspberry Pi 3. Ele será usado pois, tem uma grande capacidade de processamento, e com uma boa velocidade. O uso dele permite criar sistemas embarcados para essa aplicação de processamento de sinais de áudio.
+
+
 \section{Revisão Bibliográfica}
-Para o processamento computacional de um sinal analógico, antes é preciso fazer a amostragem do sinal. Isso consiste em discretizar o sinal, ou seja, torna-lo digital e com isso fazer o seu processamento em um computador, ou no Raspberry Pi. Amostrar é definir para um certo intervalo de tempo, um valor para o sinal. Onde esse sinal apenas possui um valor definido nesse intervalo de tempo específico.
+\subsection{Teorema da amostragem}
+Para o processamento computacional de um sinal analógico, antes é preciso fazer a amostragem do sinal. Isso consiste em discretizar o sinal, ou seja, torna-lo digital e com isso fazer o seu processamento em um computador, ou no Raspberry Pi. Amostrar é definir para um certo intervalo de tempo, um valor para o sinal. Onde esse ele apenas possui um valor definido em um intervalo de tempo específico.
 
 \begin{figure}[!h]%h = here
 \centering
@@ -436,15 +450,14 @@ Para o processamento computacional de um sinal analógico, antes é preciso faze
 % where an .eps filename suffix will be assumed under latex, 
 % and a .pdf suffix will be assumed for pdflatex; or what has been declared
 % via \DeclareGraphicsExtensions.
-\caption{Amostragem}
+\caption{{Amostragem. Fonte: }\url{https://susanasousa.wordpress.com/2011/01/23/audio-digital-frequencia-de-amostragem-bits-por-amostra-e-criterio-de-nyquist/}}
 \label{amos}
 \end{figure}
 
-Na Figura \ref{amos}, é possível ver justamente, onde para cada intervalo de tempo é que se tem um valor definido com a amostragem. Em intervalos de tempo não definido o sinal recebe zero como seu valor.
-
+Na Figura \ref{amos}, é possível ver justamente, onde para cada intervalo de tempo é que se tem uma amostra do sinal, um valor definido apenas em um intervalo de tempo específico. Em intervalos de tempo não definido, o sinal recebe zero como seu valor.
 
 Um meio para as discretização, é usar o critério de Nyquist para amostragem, que diz que a frequência de amostragem deve ser de pelo menos duas vezes a frequência do sinal. Isso se deve para que se possa retomar o sinal original com o mínimo de distorções possíveis. 
-Na Figura \ref{fig_sim} é possivel ver justamente esse critério, pois quando a frequência de amostragem é duas vezes menor, há uma sobreposição do sinal, e isso não permite voltar ao sinal original.
+Na Figura \ref{fig_sim} é possivel ver justamente esse critério, pois quando a frequência de amostragem é duas vezes menor, há uma sobreposição do sinal, e isso não permite voltar ao sinal original. \cite{Linhares:1968}
 
 \begin{figure}[!h]
 \centering
@@ -456,9 +469,47 @@ Na Figura \ref{fig_sim} é possivel ver justamente esse critério, pois quando a
 \label{fig_sim}
 \end{figure}
 
+\subsection{Processamento de sinais}
+Em áudio a largura de banda corresponde ao espectro audível, compreendido entre 20 e 20kHz. %citação aqui ppgee.ufmg.br/defesas/486M-PDF
+Então, a partir de dispositivos de captação sonora, o objetivo é trabalhar com faixas de frequência compreendidas na parte audível. Com isso, se busca então trabalhar com a resposta em frequência dessa faixa.
 
-\subsection{Requisitos}
-Um dos requisitos será a conversão analógico digital do sinal de áudio para processamento. Para essa conversão, será usado um conversor AD de 16 bits, e com frequência de amostragem de aproximadamente 44kHz.
+O processamento desses sinais, podem ser feitos com a aplicação de filtros, que delimitam uma faixa específica para se trabalhar. Esses filtros, que podem ser, passa baixas, passa altas ou passa bandas, servem para fazer a equalização de um sinal de áudio. Além dessa equalização, também podem ser incorporados controles para ajuste da amplitude dos sinais antes e após o processamento.
+
+Filtros passa baixas, são dispositivos que permitem a passagem de um sinal até uma certa frequência máxima. Passa altas, são os que permitem a passagem a partir de uma frequência mínima. E passa bandas, são os que permitem a passagem a partir de uma frequência mínima até uma máxima. As figuras abaixo mostram justamente a resposta em frequência de cada filtro.
+
+%imagens de filtros
+\begin{figure}[!h]
+\centering
+\includegraphics[width=2.5in]{Imagens/baix}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{{Passa baixas. Fonte: } {\url{https://pt.wikipedia.org/wiki/Filtro_passa-baixo}}}
+\label{baixa}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=2.5in]{Imagens/altas}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{{Passa alta. Fonte: } {\url{https://leoknuppe.wordpress.com/2013/12/16/projeto-filtro-passa-faixa/}}}
+\label{alta}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=2.5in]{Imagens/banda}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{{Passa banda. Fonte: } {\url{https://pt.wikipedia.org/wiki/Filtro_passa-faixa}}}
+\label{banda}
+\end{figure}
+
+
+
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
@@ -535,23 +586,6 @@ Um dos requisitos será a conversão analógico digital do sinal de áudio para 
 
 
 
-\section{Conclusão}
-Deverá ser escrita ao final
-
-
-
-
-% conference papers do not normally have an appendix
-
-
-% use section* for acknowledgement
-\section*{Acknowledgment}
-
-
-The authors would like to thank...
-
-
-
 
 
 % trigger a \newpage just before the given reference
@@ -576,13 +610,10 @@ The authors would like to thank...
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
+\bibliographystyle{abbrv}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\bibliography{Referencias}
 
-\end{thebibliography}
 
 
 
