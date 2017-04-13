@@ -1,11 +1,20 @@
 Data: 04/03/2017
 
 1. Quais são as vantagens e desvantagens em utilizar:
-	(a) fork?
-	(b) threads?
+	(a) fork? 
+	gera varios processos filhos
+	cada filho executa sua propria tarefa
+	cada filho tem seu espaço de memoria protegida
+	comunicação por mecanismos, pipes, sinais
+	(b) 
+	threads?uma so aplicação, roda varias threads. 
+	cada thread usam memoria compartilhada
+	comunicação mais facil, por usar memoria compartilhada
+	chance de corromper arquivos
 
 2. Quantas threads serão criadas após as linhas de código a seguir? Quantas coexistirão? Por quê?
 	(a)
+	duas threads
 		void* funcao_thread_1(void *arg);
 		void* funcao_thread_2(void *arg);
 		
@@ -20,6 +29,7 @@ Data: 04/03/2017
 		}
 
 	(b)
+	duas threads
 		void* funcao_thread_1(void *arg);
 		void* funcao_thread_2(void *arg);
 		
@@ -35,7 +45,10 @@ Data: 04/03/2017
 
 3. Apresente as características e utilidades das seguintes funções:
 	(a) pthread_setcancelstate()
-	(b) pthread_setcanceltype()
+		se a cancelação está ativada, então o cancelamento determina quando o cancelamento ocorre
+
+	(b) pthread_setcanceltype(), é um cancelamento assincrono, que significa que pode ser 
+		cancelado a qualquer momento
 (DICA: elas são relacionadas à função pthread_cancel().)
 
 
