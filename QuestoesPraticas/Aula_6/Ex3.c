@@ -3,19 +3,27 @@
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 int main(int argc, char **argv)
 {
-  pid_t pid_filho;
-  int i;
-  for (i = 1; i < argc; i++)
-  {
-    pid_filho = fork();
-    if(pid_filho == 0){
-      execvp(argv[i], argv);}
+  pid_t pid_filho[argc];
+  int i = 1;
+
+  while(i <= argc){
+
+    pid_filho[i] = fork();
+    if(pid_filho[i] == 0){
+      char *lista[] = {NULL, NULL};
+      lista[0] = argv[i];
+      execvp(argv[i], lista);
+    }
     else
-      printf("Esse eh o processo pai\n");
+      sleep(1);  //faz funcionar na sequencia certa
+
+      i++;
   }
 
-  return 0;
+
+
 }

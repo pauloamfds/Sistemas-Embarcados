@@ -16,16 +16,16 @@ void Incrementa_Variavel_Global(pid_t id_atual)
 
   int main()
   {
-    pid_t id;
+    pid_t id[3];
     int i = 0;
 
     while(i < 3)
     {
-      id = fork();
+      id[i] = fork();
     if (id == 0)
-        Incrementa_Variavel_Global(id);
+        Incrementa_Variavel_Global(id[i]);
     else
-        Incrementa_Variavel_Global(id);
+        Incrementa_Variavel_Global(id[i]);
       i++;
     }
   }

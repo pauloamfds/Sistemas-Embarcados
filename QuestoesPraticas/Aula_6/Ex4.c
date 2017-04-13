@@ -16,16 +16,16 @@ void Incrementa_Variavel_Global(pid_t id_atual)
 
   int main()
   {
-    pid_t id;
+    pid_t id[3];
     int i = 0;
 
     while(i < 3)
     {
-      id = fork();
-    if (id == 0)
-        Incrementa_Variavel_Global(id);
+      id[i] = fork();
+    if (id[i] == 0)
+        Incrementa_Variavel_Global(id[i]);
     else
-        printf("Processo pai\n");
+        sleep(1);
       i++;
     }
   }
