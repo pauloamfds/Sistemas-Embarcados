@@ -1,0 +1,17 @@
+Data: 13/04/2017
+
+1. Utilize o programa criado pelo professor para baixar as páginas principais dos seguintes sites:
+	(a) www.google.com - como é https, não executa ate o final
+	(b) www.google.com.br - retorna a porta, mas acontece como em (a)
+	(c) www.unb.br executa tudo
+	(d) fga.unb.br  como em (a) e (b)
+
+Comente os resultados obtidos para cada página, em termos das respostas HTTP e HTML obtidas.
+
+
+
+
+
+
+
+
