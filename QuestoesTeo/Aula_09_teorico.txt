@@ -1,14 +1,18 @@
 Data: 06/04/2017
 
 1. Apresente as características e utilidades das seguintes funções:
-	(a) popen()
-	(b) pclose()
-	(c) fileno()
+	(a) popen() - abre um processo por criação de pipe, fork e pelo terminal. 
+			retorna um ponteiro para abrir uma corrente que pode ser usada para ler e escrever para o pipe
+			para leitura ou escrita apenas
+	(b) pclose() - espera o processo associado para terminar e retornar um status de saida.
+			retorna o status de saida do comando.
+	(c) fileno() - deve retornar um descritor de arquivo inteiro com a corrente apontada para um stream
 
 2. Quais são as vantagens e desvantagens em utilizar:
 	(a) popen()?
+		não para a execução do programa
 	(b) exec()?
-
+		para a execução do programa
 
 
 
