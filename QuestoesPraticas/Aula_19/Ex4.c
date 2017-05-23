@@ -4,10 +4,11 @@
 
 void ctrl_c(){
 	printf("\nFechando o programa\n");
-	exit -1;
+
 	GPIO_CLR = 1<<4;
 		GPIO_CLR = 1<<22;
 		GPIO_CLR = 1<<17;
+	exit(1);
 }
 //Compile junto com o arquivo gpio_dev_mem.c
 int main(int argc, char **argv)
@@ -41,7 +42,7 @@ int main(int argc, char **argv)
 		OUT_GPIO(pin2);
 		OUT_GPIO(pin1);
 		GPIO_SET = 1<<pin1;
-		sleep(1);
+		usleep(5000);
 		GPIO_CLR = 1<<pin1;
 		GPIO_CLR = 1<<pin2;
 		GPIO_CLR = 1<<pin3;
