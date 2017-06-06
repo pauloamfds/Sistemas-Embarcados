@@ -3,8 +3,8 @@
 #include <signal.h>
 #include <stdio.h>
 int pin3=4;
-int pin1=2;
-int pin2=3;
+int pin1=17;
+int pin2=22;
 
 void ctrl_c(void)
 {
@@ -37,6 +37,7 @@ int main()
                 return -1;
 	if(setGPIO_Out(pin2))
                 return -1;
+	if(setGPIO_IN(pin3))
 	if (GPIO_Write(pin2,0))
         if (GPIO_Write(pin1,1))
                 return 1;
