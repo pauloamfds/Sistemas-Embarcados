@@ -1,0 +1,28 @@
+\begin{thebibliography}{1}
+
+\bibitem{audiolazy}
+Danilo J.~S. Bellini.
+\newblock Real-time expressive digital signal processing (dsp) package for
+  python, 2017.
+\newblock \url{https://pypi.python.org/pypi/audiolazy/0.6}.
+
+\bibitem{ferreira2014processamento}
+Henrique~Bartoski Ferreira.
+\newblock Processamento de sinais digitais de {\'a}udio no raspberry pi e
+  beaglebone black.
+\newblock {B.S.} thesis, Universidade Tecnol{\'o}gica Federal do Paran{\'a},
+  2014.
+
+\bibitem{herrera2004projeto}
+Christian~Gon{\c{c}}alves Herrera.
+\newblock {\em Projeto de Sistemas de Processamento Digital de Sinais de
+  {\'A}udio Utilizando Metodologia Cient{\'\i}fica}.
+\newblock PhD thesis, Universidade Federal de Minas Gerais, 2004.
+
+\bibitem{mello2013processamento}
+Carlos~Alexandre Mello.
+\newblock Processamento digital de sinais.
+\newblock {\em Centro de Inform{\'a}tica UFPE. Dispon{\'\i}vel em< http://www.
+  cin. ufpe. br/\~{} cabm/pds/PDS. pdf>. Acesso em}, 30(09), 2013.
+
+\end{thebibliography}
